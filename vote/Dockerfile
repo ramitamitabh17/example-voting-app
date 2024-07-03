@@ -17,6 +17,12 @@ RUN pip install -r requirements.txt
 # Copy our code from the current folder to /app inside the container
 COPY . .
 
+# Ensure the app directory is writable
+RUN chgrp -R 0 /app && chmod -R g=u /app
+
+# Set the user to a non-root user
+USER 1001
+
 # Make port 80 available for links and/or publish
 EXPOSE 80
 
