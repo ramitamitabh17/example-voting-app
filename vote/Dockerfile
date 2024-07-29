@@ -25,7 +25,7 @@ RUN useradd -u 1001 myuser
 USER myuser
 
 # Make port 80 available for links and/or publish
-EXPOSE 80
+EXPOSE 4000
 
 # Define our command to be run when launching the container
-CMD ["gunicorn", "app:app", "-b", "0.0.0.0:80", "--log-file", "-", "--access-logfile", "-", "--workers", "4", "--keep-alive", "0"]
+CMD ["gunicorn", "app:app", "-b", "0.0.0.0:4000", "--log-file", "-", "--access-logfile", "-", "--workers", "4", "--keep-alive", "0"]
