@@ -1,7 +1,7 @@
 # Using official python runtime base image
 FROM python:3.9-slim
 
-# add curl for healthcheck
+# Add curl for healthcheck
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
     curl \
@@ -18,10 +18,11 @@ RUN pip install -r requirements.txt
 COPY . .
 
 # Ensure the app directory is writable
-RUN chgrp -R 0 /app && chmod -R g=u /app
+RUN chmod -R 755 /app
 
 # Set the user to a non-root user
-USER 1001
+RUN useradd -u 1001 myuser
+USER myuser
 
 # Make port 80 available for links and/or publish
 EXPOSE 80
